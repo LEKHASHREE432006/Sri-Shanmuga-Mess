@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Shanmuga Mess - Avalapalli Hudco, Hosur</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .font-heading {
+            font-family: 'Teko', sans-serif;
+        }
+
+        /* Fixed Background Image with Dark Overlay */
+        .bg-hotel {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.92)), url('image_0.png');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-modal {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(16px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #059669;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-hotel min-h-screen flex flex-col">
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-40 glass-card border-b border-emerald-500/20 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center text-amber-400 font-bold text-2xl shadow-md border-2 border-amber-400">
+                    <i class="fa-solid fa-utensils"></i>
+                </div>
+                <div>
+                    <h1 class="font-heading text-3xl font-bold tracking-wider text-amber-400 leading-none">SRI SHANMUGA MESS</h1>
+                    <p class="text-xs text-emerald-400 font-medium">A Taste of Home • Hosur</p>
+                </div>
+            </div>
+
+            <!-- Header Action Buttons -->
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleCart()" class="relative bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl flex items-center space-x-2 transition shadow-md">
+                    <i class="fa-solid fa-basket-shopping text-lg"></i>
+                    <span class="hidden sm:inline font-semibold">Cart</span>
+                    <span id="cart-count" class="bg-amber-400 text-slate-900 font-bold text-xs px-2 py-0.5 rounded-full">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full space-y-8">
+
+        <!-- Hero & Info Banner -->
+        <section class="glass-card rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="bg-amber-400 text-slate-900 text-xs font-bold px-2.5 py-1 rounded-md flex items-center gap-1">
+                            <i class="fa-solid fa-star"></i> 4.3 (2,961+ Reviews)
+                        </span>
+                        <span id="status-badge" class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-semibold px-2.5 py-1 rounded-md flex items-center gap-1">
+                            <i class="fa-solid fa-circle text-[8px] animate-pulse"></i> Open Now
+                        </span>
+                        <span class="bg-slate-800 text-slate-300 text-xs font-medium px-2.5 py-1 rounded-md">
+                            ₹1–200 per person
+                        </span>
+                    </div>
+
+                    <h2 class="text-2xl md:text-4xl font-bold text-white">Authentic South Indian & Non-Veg Cuisine</h2>
+                    <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                        Popular eatery located at Avalapalli Hudco, Hosur. Famous for traditional banana leaf meals, parotta, mutton chukka, and special chicken biryani.
+                    </p>
+
+                    <!-- Amenities Tags -->
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-xs bg-slate-800/80 text-emerald-300 border border-emerald-500/20 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                            <i class="fa-solid fa-utensils"></i> Dine-in
+                        </span>
+                        <span class="text-xs bg-slate-800/80 text-emerald-300 border border-emerald-500/20 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                            <i class="fa-solid fa-bag-shopping"></i> Takeaway
+                        </span>
+                        <span class="text-xs bg-slate-800/80 text-emerald-300 border border-emerald-500/20 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                            <i class="fa-solid fa-car-side"></i> Drive-Through
+                        </span>
+                        <span class="text-xs bg-slate-800/80 text-emerald-300 border border-emerald-500/20 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                            <i class="fa-solid fa-wheelchair"></i> Wheelchair Seating
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Hours & Location Quick Box -->
+                <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-700/50 space-y-3">
+                    <h3 class="text-amber-400 font-semibold text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-clock"></i> Mess Timings Today
+                    </h3>
+                    <div class="text-xs space-y-1 text-slate-300">
+                        <div class="flex justify-between">
+                            <span>Morning & Lunch:</span>
+                            <span class="text-white font-medium">8:30 AM – 3:30 PM</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Evening & Dinner:</span>
+                            <span class="text-white font-medium">5:30 PM – 10:30 PM</span>
+                        </div>
+                    </div>
+                    <hr class="border-slate-800">
+                    <div class="text-xs space-y-1">
+                        <p class="text-slate-400"><i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> Address:</p>
+                        <p class="text-slate-200 font-medium">PRQJ+H4C, Bagalur HUDCO Rd, Avalapalli Hudco, Tamil Nadu 635109</p>
+                    </div>
+                    <a href="https://maps.google.com/?q=PRQJ+H4C,Bagalur+HUDCO+Rd,Avalapalli+Hudco,Tamil+Nadu+635109" target="_blank" class="block text-center w-full bg-slate-800 hover:bg-slate-700 text-amber-400 font-semibold text-xs py-2 rounded-lg transition border border-amber-400/20">
+                        <i class="fa-solid fa-directions mr-1"></i> Open Directions in Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Filter Controls -->
+        <section class="flex flex-col md:flex-row justify-between items-center gap-4">
+            <!-- Category Tabs -->
+            <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                <button onclick="filterCategory('all')" class="cat-btn active bg-emerald-600 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition shadow">All Menu</button>
+                <button onclick="filterCategory('breakfast')" class="cat-btn bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold px-4 py-2.5 rounded-xl transition">Breakfast</button>
+                <button onclick="filterCategory('meals')" class="cat-btn bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold px-4 py-2.5 rounded-xl transition">Meals & Biryani</button>
+                <button onclick="filterCategory('nonveg')" class="cat-btn bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold px-4 py-2.5 rounded-xl transition">Non-Veg Specials</button>
+                <button onclick="filterCategory('beverages')" class="cat-btn bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold px-4 py-2.5 rounded-xl transition">Beverages</button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="relative w-full md:w-64">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
+                <input type="text" id="search-input" onkeyup="searchMenu()" placeholder="Search dishes..." class="w-full bg-slate-800/90 border border-slate-700 text-white text-xs rounded-xl pl-9 pr-4 py-2.5 focus:outline-none focus:border-emerald-500">
+            </div>
+        </section>
+
+        <!-- Food Menu Grid -->
+        <section id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Dynamic JavaScript Content -->
+        </section>
+
+        <!-- Location & Contact Info Footer Section -->
+        <section class="glass-card rounded-2xl p-6 md:p-8 space-y-6">
+            <h3 class="text-2xl font-bold text-amber-400 font-heading tracking-wide">VISIT SRI SHANMUGA MESS</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-3 text-sm text-slate-300">
+                    <p class="flex items-start gap-2">
+                        <i class="fa-solid fa-map-pin text-amber-400 mt-1"></i>
+                        <span><strong>Address:</strong> PRQJ+H4C, Bagalur HUDCO Rd, Bagalur Hudco, Avalapalli Hudco, Tamil Nadu 635109, India</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <i class="fa-solid fa-phone text-emerald-400"></i>
+                        <span><strong>Phone Enquiry:</strong> +91 98433 67388</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <i class="fa-solid fa-users text-amber-400"></i>
+                        <span><strong>Facilities:</strong> Kids Friendly, Group Outings, Drive-Through Counter</span>
+                    </p>
+                </div>
+                <div class="bg-slate-900 rounded-xl overflow-hidden border border-slate-700 h-48 flex items-center justify-center relative">
+                    <iframe title="Sri Shanmuga Mess Location" class="w-full h-full opacity-80" src="https://maps.google.com/maps?q=PRQJ+H4C,Bagalur+HUDCO+Rd,Avalapalli+Hudco,Hosur,Tamil+Nadu&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Slide-over Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full sm:w-96 glass-modal z-50 transform translate-x-full transition-transform duration-300 ease-in-out border-l border-emerald-500/20 shadow-2xl flex flex-col">
+        <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/90">
+            <h3 class="font-bold text-lg text-white flex items-center gap-2">
+                <i class="fa-solid fa-basket-shopping text-emerald-400"></i> Your Token Cart
+            </h3>
+            <button onclick="toggleCart()" class="text-slate-400 hover:text-white p-2 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div id="cart-items" class="p-4 flex-grow overflow-y-auto space-y-3">
+            <!-- Dynamic Cart Items -->
+        </div>
+
+        <!-- Order Type Selection & Checkout -->
+        <div class="p-4 border-t border-slate-800 bg-slate-900/95 space-y-3">
+            <div>
+                <label class="block text-xs text-slate-400 mb-1 font-medium">Order Type</label>
+                <select id="order-type" class="w-full bg-slate-800 border border-slate-700 text-white text-xs rounded-lg p-2.5 focus:outline-none focus:border-emerald-500">
+                    <option value="Dine-in">Dine-In (Table Service)</option>
+                    <option value="Takeaway">Takeaway (Parcel)</option>
+                    <option value="Drive-Through">Drive-Through Pickup</option>
+                </select>
+            </div>
+
+            <div class="flex justify-between items-center text-sm pt-2">
+                <span class="text-slate-400">Total Amount:</span>
+                <span id="cart-total" class="text-xl font-bold text-amber-400">₹0</span>
+            </div>
+
+            <button onclick="checkoutOrder()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition shadow-lg flex items-center justify-center gap-2 text-sm">
+                <i class="fa-brands fa-whatsapp text-lg"></i> Send Order via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Order Receipt Modal -->
+    <div id="receipt-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-amber-400/30 rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl relative text-center">
+            <div class="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto text-2xl border border-emerald-500/30">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <h3 class="text-2xl font-bold text-amber-400 font-heading tracking-wider">ORDER CONFIRMED</h3>
+            <p class="text-xs text-slate-400">Show this token receipt at the mess counter</p>
+
+            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700/50 space-y-2 text-left text-xs">
+                <div class="flex justify-between text-slate-400">
+                    <span>Token Number:</span>
+                    <span id="token-id" class="text-emerald-400 font-bold">#SHN-102</span>
+                </div>
+                <div class="flex justify-between text-slate-400">
+                    <span>Order Type:</span>
+                    <span id="receipt-type" class="text-white font-medium">Dine-in</span>
+                </div>
+                <hr class="border-slate-700">
+                <div id="receipt-items-list" class="space-y-1 text-slate-300">
+                    <!-- Dynamic Summary -->
+                </div>
+                <hr class="border-slate-700">
+                <div class="flex justify-between text-sm font-bold pt-1">
+                    <span class="text-white">Total Paid:</span>
+                    <span id="receipt-total" class="text-amber-400">₹0</span>
+                </div>
+            </div>
+
+            <button onclick="closeReceipt()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-2.5 rounded-xl transition text-xs">
+                Close Receipt
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Menu Data
+        const menuItems = [
+            { id: 1, name: 'Special Parotta (2 pcs)', category: 'breakfast', price: 40, type: 'veg', desc: 'Flaky hot parottas served with spicy veg salna & chutney.' },
+            { id: 2, name: 'Egg Veechu Parotta', category: 'nonveg', price: 65, type: 'nonveg', desc: 'Traditional thin stretched parotta folded with fresh spiced egg.' },
+            { id: 3, name: 'Mutton Chukka', category: 'nonveg', price: 180, type: 'nonveg', desc: 'Authentic pepper-infused pan-roasted mutton tender pieces.' },
+            { id: 4, name: 'Full South Indian Meals', category: 'meals', price: 110, type: 'veg', desc: 'Served on banana leaf: Rice, Sambar, Rasam, Kootu, Poriyal, Appalam & Payasam.' },
+            { id: 5, name: 'Special Chicken Biryani', category: 'meals', price: 160, type: 'nonveg', desc: 'Seeraga Samba rice chicken biryani cooked in traditional Tamil style.' },
+            { id: 6, name: 'Masala Dosa', category: 'breakfast', price: 50, type: 'veg', desc: 'Crispy rice crepe filled with spicy potato masala, served with 3 chutneys.' },
+            { id: 7, name: 'Onion Podi Dosa', category: 'breakfast', price: 60, type: 'veg', desc: 'Topped with chopped red onions and homemade spicy idli podi.' },
+            { id: 8, name: 'Chicken Pepper Fry', category: 'nonveg', price: 140, type: 'nonveg', desc: 'Country chicken sauteed with ground black pepper and curry leaves.' },
+            { id: 9, name: 'Degree Filter Coffee', category: 'beverages', price: 20, type: 'veg', desc: 'Traditional brass tumbler decoction filter coffee.' },
+            { id: 10, name: 'Fresh Lemon Juice / Soda', category: 'beverages', price: 25, type: 'veg', desc: 'Refreshing sweet or salted lime juice.' }
+        ];
+
+        let cart = [];
+
+        // Render Menu Items
+        function renderMenu(itemsToRender) {
+            const grid = document.getElementById('menu-grid');
+            grid.innerHTML = '';
+
+            itemsToRender.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-2xl p-5 flex flex-col justify-between hover:border-emerald-500/50 transition-all duration-300 shadow-xl';
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded ${item.type === 'veg' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'}">
+                                <i class="fa-solid fa-circle text-[8px] mr-1"></i>${item.type.toUpperCase()}
+                            </span>
+                            <span class="text-lg font-bold text-amber-400 font-heading">₹${item.price}</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base leading-snug">${item.name}</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">${item.desc}</p>
+                    </div>
+                    <button onclick="addToCart(${item.id})" class="mt-4 w-full bg-emerald-600/80 hover:bg-emerald-600 text-white font-semibold text-xs py-2.5 rounded-xl transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-plus"></i> Add to Order
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Add Item to Cart
+        function addToCart(id) {
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty++;
+            } else {
+                const item = menuItems.find(i => i.id === id);
+                cart.push({ ...item, qty: 1 });
+            }
+            updateCartUI();
+        }
+
+        // Update Cart UI
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            let totalCount = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-slate-500 text-center text-xs py-8">Your cart is currently empty.</p>';
+            } else {
+                cart.forEach(item => {
+                    total += item.price * item.qty;
+                    totalCount += item.qty;
+
+                    const row = document.createElement('div');
+                    row.className = 'bg-slate-800/80 p-3 rounded-xl border border-slate-700/50 flex justify-between items-center text-xs';
+                    row.innerHTML = `
+                        <div>
+                            <p class="font-semibold text-white">${item.name}</p>
+                            <p class="text-amber-400 font-bold mt-0.5">₹${item.price * item.qty}</p>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-slate-900 rounded-lg p-1 border border-slate-700">
+                            <button onclick="changeQty(${item.id}, -1)" class="w-6 h-6 flex items-center justify-center text-slate-300 hover:bg-slate-800 rounded">-</button>
+                            <span class="font-bold text-white px-1">${item.qty}</span>
+                            <button onclick="changeQty(${item.id}, 1)" class="w-6 h-6 flex items-center justify-center text-slate-300 hover:bg-slate-800 rounded">+</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(row);
+                });
+            }
+
+            cartCount.textContent = totalCount;
+            cartTotal.textContent = `₹${total}`;
+        }
+
+        // Change Cart Quantity
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+            }
+            updateCartUI();
+        }
+
+        // Filter Categories
+        function filterCategory(cat) {
+            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('bg-emerald-600', 'active'));
+            event.target.classList.add('bg-emerald-600', 'active');
+
+            if (cat === 'all') {
+                renderMenu(menuItems);
+            } else {
+                renderMenu(menuItems.filter(i => i.category === cat));
+            }
+        }
+
+        // Search Menu
+        function searchMenu() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filtered = menuItems.filter(i => i.name.toLowerCase().includes(query) || i.desc.toLowerCase().includes(query));
+            renderMenu(filtered);
+        }
+
+        // Toggle Sidebar
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            sidebar.classList.toggle('translate-x-full');
+        }
+
+        // Checkout & Send via WhatsApp
+        function checkoutOrder() {
+            if (cart.length === 0) {
+                alert('Please add items to your cart first.');
+                return;
+            }
+
+            const orderType = document.getElementById('order-type').value;
+            const tokenId = '#SHN-' + Math.floor(100 + Math.random() * 900);
+            let total = 0;
+
+            let itemsSummary = '';
+            let whatsappText = `*NEW ORDER - SRI SHANMUGA MESS*%0A`;
+            whatsappText += `*Token:* ${tokenId}%0A`;
+            whatsappText += `*Order Type:* ${orderType}%0A------------------%0A`;
+
+            const summaryContainer = document.getElementById('receipt-items-list');
+            summaryContainer.innerHTML = '';
+
+            cart.forEach(item => {
+                const subtotal = item.price * item.qty;
+                total += subtotal;
+
+                whatsappText += `• ${item.name} x${item.qty} - ₹${subtotal}%0A`;
+
+                const line = document.createElement('div');
+                line.className = 'flex justify-between';
+                line.innerHTML = `<span>${item.name} x${item.qty}</span><span class="font-semibold">₹${subtotal}</span>`;
+                summaryContainer.appendChild(line);
+            });
+
+            whatsappText += `------------------%0A*Total Amount:* ₹${total}%0A`;
+            whatsappText += `*Location:* Avalapalli Hudco, Bagalur HUDCO Rd`;
+
+            // Open Receipt Modal
+            document.getElementById('token-id').textContent = tokenId;
+            document.getElementById('receipt-type').textContent = orderType;
+            document.getElementById('receipt-total').textContent = `₹${total}`;
+            document.getElementById('receipt-modal').classList.remove('hidden');
+
+            // Send via WhatsApp to Mess Number
+            const messPhone = '919843367388';
+            window.open(`https://wa.me/${messPhone}?text=${whatsappText}`, '_blank');
+
+            // Reset Cart
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+
+        function closeReceipt() {
+            document.getElementById('receipt-modal').classList.add('hidden');
+        }
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMenu(menuItems);
+        });
+    </script>
+</body>
+</html>
